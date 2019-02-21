@@ -1,4 +1,4 @@
-package com.example.user.estimasi;
+package com.user.estimasi;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,20 +9,21 @@ import android.widget.ImageButton;
 
 public class Main2Activity extends AppCompatActivity {
 
-    ImageButton imageNotaris , imageHitung;
-    ImageButton imageRaywhite , imageLaporan;
-    ImageButton imageProperti , imageSosialisasi;
+    ImageButton imageNotaris, imageHitung, imageRaywhite, imageLaporan, imageProperti, imageSosialisasi, imageAboutUs, imageExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        imageNotaris = (ImageButton)findViewById(R.id.notaris);
-        imageRaywhite = (ImageButton)findViewById(R.id.raywhite);
-        imageProperti = (ImageButton)findViewById(R.id.properti);
-        imageHitung = (ImageButton)findViewById(R.id.hitung);
-        imageLaporan = (ImageButton)findViewById(R.id.laporan);
-        imageSosialisasi = (ImageButton)findViewById(R.id.sosio);
+
+        imageNotaris = findViewById(R.id.notaris);
+        imageRaywhite = findViewById(R.id.raywhite);
+        imageProperti = findViewById(R.id.properti);
+        imageHitung = findViewById(R.id.hitung);
+        imageLaporan = findViewById(R.id.laporan);
+        imageSosialisasi = findViewById(R.id.sosio);
+        imageAboutUs = findViewById(R.id.about);
+        imageExit = findViewById(R.id.exit);
 
 
         imageHitung.setOnClickListener(new View.OnClickListener() {
@@ -31,7 +32,6 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(Main2Activity.this,HitungActivity.class));
             }
         });
-
 
         imageNotaris.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +69,20 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Main2Activity.this,SosialisasiActivity.class));
+            }
+        });
+
+
+        imageAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,TentangActivity.class));
+            }
+        });
+        imageExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

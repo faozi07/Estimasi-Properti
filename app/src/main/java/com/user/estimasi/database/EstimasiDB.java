@@ -1,4 +1,4 @@
-package com.example.user.estimasi.database;
+package com.user.estimasi.database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.widget.PagerSnapHelper;
 import android.util.Log;
 
-import com.example.user.estimasi.Login2Activity;
-import com.example.user.estimasi.RegisterActivity;
+import com.user.estimasi.Login2Activity;
+import com.user.estimasi.RegisterActivity;
 
 public class EstimasiDB extends SQLiteOpenHelper {
     //==============================================================================================

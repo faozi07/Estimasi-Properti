@@ -1,4 +1,4 @@
-package com.example.user.estimasi;
+package com.user.estimasi;
 
 import android.content.Intent;
 import android.os.Handler;

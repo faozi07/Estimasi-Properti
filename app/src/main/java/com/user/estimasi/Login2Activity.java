@@ -1,4 +1,4 @@
-package com.example.user.estimasi;
+package com.user.estimasi;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.user.estimasi.database.EstimasiDB;
+import com.user.estimasi.database.EstimasiDB;
 
 public class Login2Activity extends AppCompatActivity {
     Button btnLogin, btnRegister;

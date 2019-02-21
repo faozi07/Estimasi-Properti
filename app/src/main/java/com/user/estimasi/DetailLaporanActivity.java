@@ -1,4 +1,4 @@
-package com.example.user.estimasi;
+package com.user.estimasi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
