@@ -19,6 +19,7 @@ public class HitungActivity extends AppCompatActivity {
         btnHitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
                 startActivity(new Intent(HitungActivity.this, KonfirmasiActivity.class));
             }
         });
