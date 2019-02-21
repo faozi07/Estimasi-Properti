@@ -14,12 +14,11 @@ public class HitungActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hitung);
-        btnHitung = (Button) findViewById(R.id.btnHitung);
+        btnHitung = findViewById(R.id.btnHitung);
 
         btnHitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
                 startActivity(new Intent(HitungActivity.this, KonfirmasiActivity.class));
             }
         });

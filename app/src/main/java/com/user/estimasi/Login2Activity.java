@@ -26,9 +26,14 @@ public class Login2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Login");
+        }
+
         estimasiDB = new EstimasiDB(this);
-        btnLogin = (Button) findViewById(R.id.masuk);
-        btnRegister = (Button) findViewById(R.id.daftar);
+        btnLogin = findViewById(R.id.masuk);
+        btnRegister = findViewById(R.id.daftar);
         editUsername = findViewById(R.id.username);
         editPassword = findViewById(R.id.password);
 
