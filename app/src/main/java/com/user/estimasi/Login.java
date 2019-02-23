@@ -94,7 +94,6 @@ public class Login extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         SoundBtn.soundBtn(Login.this);
         if (!isExit) {
             Toast.makeText(Login.this, "Tekan sekali lagi untuk keluar",Toast.LENGTH_LONG).show();

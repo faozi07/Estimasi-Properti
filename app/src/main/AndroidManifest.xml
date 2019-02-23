@@ -36,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HitungActivity" />
+        <activity android:name=".Hitung" />
         <activity android:name=".LaporanActivity" />
         <activity android:name=".SosialisasiActivity" />
         <activity android:name=".KonfirmasiActivity" />

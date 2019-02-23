@@ -4,16 +4,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MenuUtama extends AppCompatActivity {
 
     ImageButton imageNotaris, imageHitung, imageRaywhite, imageLaporan, imageProperti, imageSosialisasi, imageAboutUs, imageExit;
     SharedPreferences spLogin;
+    private boolean isExit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class MenuUtama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SoundBtn.soundBtn(MenuUtama.this);
-                startActivity(new Intent(MenuUtama.this,HitungActivity.class));
+                startActivity(new Intent(MenuUtama.this, Hitung.class));
             }
         });
 
@@ -132,5 +135,22 @@ public class MenuUtama extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        SoundBtn.soundBtn(MenuUtama.this);
+        if (!isExit) {
+            Toast.makeText(MenuUtama.this, "Tekan sekali lagi untuk keluar",Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            },2000);
+        }
+        else {
+            finish();
+        }
     }
 }
