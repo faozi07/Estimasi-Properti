@@ -15,11 +15,12 @@ import android.widget.Toast;
 
 import com.user.estimasi.database.EstimasiDB;
 
-public class Login2Activity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     Button btnLogin, btnRegister;
     EditText editUsername, editPassword;
     public static boolean isTerdaftar = false;
     public static String username = "", nama = "", email = "", password = "";
+    private boolean isExit = false;
     EstimasiDB estimasiDB;
 
     @Override
@@ -40,6 +41,7 @@ public class Login2Activity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundBtn.soundBtn(Login.this);
                 View view = getCurrentFocus();
                 if (view != null) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -48,10 +50,10 @@ public class Login2Activity extends AppCompatActivity {
                     }
                 }
                 if (editUsername.getText().toString().equals("") || editPassword.getText().toString().equals("")) {
-                    Toast.makeText(Login2Activity.this, "Isi data dengan lengkap", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Isi data dengan lengkap", Toast.LENGTH_LONG).show();
                 } else {
                     estimasiDB.login(editUsername.getText().toString(), editPassword.getText().toString());
-                    final ProgressDialog progressDialog = new ProgressDialog(Login2Activity.this);
+                    final ProgressDialog progressDialog = new ProgressDialog(Login.this);
                     progressDialog.setMessage("Login ...");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
@@ -69,7 +71,8 @@ public class Login2Activity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login2Activity.this, RegisterActivity.class));
+                SoundBtn.soundBtn(Login.this);
+                startActivity(new Intent(Login.this, Register.class));
             }
         });
     }
@@ -83,10 +86,27 @@ public class Login2Activity extends AppCompatActivity {
             loginEditor.putString(StaticVars.SP_LOGIN_EMAIL, email);
             loginEditor.putString(StaticVars.SP_LOGIN_PASSWORD, password);
             loginEditor.apply();
-            startActivity(new Intent(Login2Activity.this, Main2Activity.class));
+            startActivity(new Intent(Login.this, MenuUtama.class));
         } else {
-            Toast.makeText(Login2Activity.this, "Login gagal, silahkan coba lagi", Toast.LENGTH_LONG).show();
+            Toast.makeText(Login.this, "Login gagal, silahkan coba lagi", Toast.LENGTH_LONG).show();
         }
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SoundBtn.soundBtn(Login.this);
+        if (!isExit) {
+            Toast.makeText(Login.this, "Tekan sekali lagi untuk keluar",Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            },2000);
+        }
+        else {
+            finish();
+        }
     }
 }

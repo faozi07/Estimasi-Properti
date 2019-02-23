@@ -5,11 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.widget.PagerSnapHelper;
-import android.util.Log;
 
-import com.user.estimasi.Login2Activity;
-import com.user.estimasi.RegisterActivity;
+import com.user.estimasi.Login;
+import com.user.estimasi.Register;
+
+import java.util.Random;
 
 public class EstimasiDB extends SQLiteOpenHelper {
     //==============================================================================================
@@ -53,8 +53,8 @@ public class EstimasiDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            String sqlUser = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_USER + " (" + ID + "TEXT, " + USER_NAME + "TEXT, "
-                    + NAME + "TEXT, " + EMAIL + "TEXT, " + PASSWORD + "TEXT)";
+            String sqlUser = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_USER + " (" + ID + " TEXT, " + USER_NAME + " TEXT, "
+                    + NAME + " TEXT, " + EMAIL + " TEXT, " + PASSWORD + " TEXT)";
             db.execSQL(sqlUser);
 
             String sqlEstimasi = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ESTIMASI + " (" + tg_trx + "TEXT, " + no_customer + "TEXT, "
@@ -86,16 +86,16 @@ public class EstimasiDB extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
-    public void insertUser(String id, String username, String nama, String emal, String passwor) {
+    public void insertUser(String nama, String email, String username, String password) {
         try {
             SQLiteDatabase db = getWritableDatabase();
             String sql = "INSERT INTO " + TABLE_NAME_USER + " (" + ID + ", " + USER_NAME + ", "+NAME+", "+EMAIL+", "+ PASSWORD+") VALUES ('"
-                    + id + "', '" + username + "', '" + nama + "', '"+emal+"', '"+passwor+"');";
+                    + String.valueOf(new Random().nextInt()) + "', '" + username + "', '" + nama + "', '"+email+"', '"+password+"');";
             db.execSQL(sql);
-            RegisterActivity.registerSukses = true;
+            Register.registerSukses = true;
         } catch (Exception exp) {
             exp.printStackTrace();
-            RegisterActivity.registerSukses = false;
+            Register.registerSukses = false;
         }
     }
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
@@ -106,7 +106,7 @@ public class EstimasiDB extends SQLiteOpenHelper {
                 " WHERE " + USER_NAME + "='" + username + "'", null);
         if (cursor.moveToFirst()) {
             do {
-                RegisterActivity.isRegistered = cursor.getString(0) != null && username.equals(cursor.getString(0));
+                Register.isRegistered = cursor.getString(0) != null && username.equals(cursor.getString(0));
             } while (cursor.moveToNext());
         }
         db.close();
@@ -119,11 +119,10 @@ public class EstimasiDB extends SQLiteOpenHelper {
                 " WHERE " + USER_NAME + "='" + username + "' AND "+PASSWORD+" = '"+password+"'", null);
         if (cursor.moveToFirst()) {
             do {
-                Login2Activity.isTerdaftar = cursor.getString(1) != null && username.equals(cursor.getString(1));
-                Login2Activity.username = cursor.getString(1);
-                Login2Activity.nama = cursor.getString(0);
-                Login2Activity.email = cursor.getString(3);
-                Login2Activity.password = cursor.getString(4);
+                Login.isTerdaftar = cursor.getString(1) != null && username.equals(cursor.getString(1));
+                Login.username = cursor.getString(1);
+                Login.nama = cursor.getString(2);
+                Login.email = cursor.getString(3);
             } while (cursor.moveToNext());
         }
         db.close();

@@ -10,13 +10,13 @@
     android:gravity="center"
     android:focusableInTouchMode="true"
     tools:ignore="HardcodedText"
-    tools:context=".Login2Activity">
+    tools:context=".Login">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,8 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/password"
@@ -66,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/yellow"
-        android:textColor="#777"
+        android:textColor="#80000000"
         android:text="Daftar"
         android:textStyle="bold" />
 
