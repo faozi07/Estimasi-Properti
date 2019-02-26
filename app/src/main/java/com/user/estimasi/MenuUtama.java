@@ -52,7 +52,7 @@ public class MenuUtama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SoundBtn.soundBtn(MenuUtama.this);
-                startActivity(new Intent(MenuUtama.this,NotarisActivity.class));
+                startActivity(new Intent(MenuUtama.this, Notaris.class));
             }
         });
         imageRaywhite.setOnClickListener(new View.OnClickListener() {

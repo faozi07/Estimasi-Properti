@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class NotarisActivity extends AppCompatActivity {
+public class Notaris extends AppCompatActivity {
     ListView lvNotaris;
     String[] listArray={"1. Jakarta","2. Bogor","3. Depok","4. Tangerang","5. Bekasi",};
     ArrayAdapter adapter;
@@ -29,8 +29,8 @@ public class NotarisActivity extends AppCompatActivity {
         lvNotaris.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(NotarisActivity.this,DetailNotarisActivity.class));
-                DetailNotarisActivity.posisi = position;
+                startActivity(new Intent(Notaris.this, DetailNotaris.class));
+                DetailNotaris.posisi = position;
             }
         });
     }

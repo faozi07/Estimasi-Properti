@@ -351,6 +351,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iPajakPenjual"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -373,6 +374,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iPajakPembeli"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -395,6 +397,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iAjb"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -417,6 +420,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iBalikNama"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -439,6 +443,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iCek"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -461,6 +466,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iFloating"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -483,6 +489,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iZona"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -505,6 +512,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iValidasi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -527,6 +535,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iPnbp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -549,6 +558,7 @@
                         android:layout_weight="0.1"
                         android:text=":"/>
                     <TextView
+                        android:id="@+id/iTotal"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -557,12 +567,46 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layBtnSimpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:visibility="visible"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnBatal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="visible"
+            android:background="@color/yellow"
+            android:text="Batal"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:visibility="visible"
+            android:background="@color/colorPrimaryDark"
+            android:text="Simpan"
+            android:textColor="#fff" />
+    </LinearLayout>
     <Button
         android:id="@+id/btnHitung"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
+        android:visibility="gone"
         android:background="@color/colorPrimaryDark"
         android:text="hitung"
         android:textColor="#fff" />

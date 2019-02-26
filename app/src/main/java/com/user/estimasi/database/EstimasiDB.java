@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.user.estimasi.Hitung;
 import com.user.estimasi.Login;
 import com.user.estimasi.Register;
 
+import java.util.Date;
 import java.util.Random;
 
 public class EstimasiDB extends SQLiteOpenHelper {
@@ -25,6 +27,7 @@ public class EstimasiDB extends SQLiteOpenHelper {
     private static final String PASSWORD = "PASSWORD";
 
     private static final String TABLE_NAME_ESTIMASI = "ESTIMASI";
+    private static final String id_trx = "id_trx";
     private static final String tg_trx = "tg_trx";
     private static final String no_customer = "no_customer";
     private static final String nama_customer = "nama_customer";
@@ -43,6 +46,7 @@ public class EstimasiDB extends SQLiteOpenHelper {
     private static final String zona = "zona";
     private static final String validasi = "validasi";
     private static final String pnbp = "pnbp";
+    private static final String total = "total";
     private static final String tg_sosio = "tg_sosio";
     private static final String hs_sosio = "hs_sosio";
 
@@ -53,16 +57,13 @@ public class EstimasiDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            String sqlUser = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_USER + " (" + ID + " TEXT, " + USER_NAME + " TEXT, "
-                    + NAME + " TEXT, " + EMAIL + " TEXT, " + PASSWORD + " TEXT)";
+            String sqlUser = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_USER + " (" +
+                    ID + " TEXT, " +
+                    USER_NAME + " TEXT, " +
+                    NAME + " TEXT, " +
+                    EMAIL + " TEXT, " +
+                    PASSWORD + " TEXT)";
             db.execSQL(sqlUser);
-
-            String sqlEstimasi = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ESTIMASI + " (" + tg_trx + "TEXT, " + no_customer + "TEXT, "
-                    + nama_customer + "TEXT, " + sts_ser + "TEXT, " + ls_tnh + "TEXT, " + njop + "TEXT, " + tg_tbt + "TEXT, "
-                    + sts_imb + "TEXT, " + harga + "TEXT, " + pjk_pjl + "TEXT, " + pjk_pbl + "TEXT, " + ajb + "TEXT, " +
-                    bn + "TEXT, " + cek + "TEXT, " + floating + "TEXT, " + zona + "TEXT, " + validasi + "TEXT, " + pnbp + "TEXT, " +
-                    tg_sosio + "TEXT, " + hs_sosio + "TEXT);";
-            db.execSQL(sqlEstimasi);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,6 +75,38 @@ public class EstimasiDB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_USER);
         onCreate(db);
 
+    }
+
+    public void createEstimasi() {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            String sqlEstimasi = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_ESTIMASI + " (" +
+                    id_trx + " TEXT, " +
+                    tg_trx + " TEXT, " +
+                    no_customer + " TEXT, " +
+                    nama_customer + " TEXT, " +
+                    sts_ser + " TEXT, " +
+                    ls_tnh + " TEXT, " +
+                    njop + " TEXT, " +
+                    tg_tbt + " TEXT, " +
+                    sts_imb + " TEXT, " +
+                    harga + " TEXT, " +
+                    pjk_pjl + " TEXT, " +
+                    pjk_pbl + " TEXT, " +
+                    ajb + " TEXT, " +
+                    bn + " TEXT, " +
+                    cek + " TEXT, " +
+                    floating + " TEXT, " +
+                    zona + " TEXT, " +
+                    validasi + " TEXT, " +
+                    pnbp + " TEXT, " +
+                    total + " TEXT, " +
+                    tg_sosio + " TEXT, " +
+                    hs_sosio + " TEXT);";
+            db.execSQL(sqlEstimasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void dropTable() {
@@ -126,5 +159,62 @@ public class EstimasiDB extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         db.close();
+    }
+    public void insertHitung(String tglTrx, String noCustomer, String namaCustomer, String sttsSertifikat, String luasTanah, String njops, String tglTerbit, String sttsImb,
+                             String hargas, String pjkPembeli, String pjkPenjual, String ajbs, String balikNama, String ceks, String floatings, String zonas, String validasis, String pnbps,
+                             String totals) {
+        try {
+            Date dates = new Date();
+            SQLiteDatabase db = getWritableDatabase();
+            String sqlEstimasi = "INSERT INTO " + TABLE_NAME_ESTIMASI + " (" +
+                    id_trx + ", " +
+                    tg_trx + ", " +
+                    no_customer + ", " +
+                    nama_customer + ", " +
+                    sts_ser + ", " +
+                    ls_tnh + ", " +
+                    njop + ", " +
+                    tg_tbt + ", " +
+                    sts_imb + ", " +
+                    harga + ", " +
+                    pjk_pjl + ", " +
+                    pjk_pbl + ", " +
+                    ajb + ", " +
+                    bn + ", " +
+                    cek + ", " +
+                    floating + ", " +
+                    zona + ", " +
+                    validasi + ", " +
+                    pnbp + ", " +
+                    total + ", " +
+                    tg_sosio + ", " +
+                    hs_sosio + ") VALUES ('" +
+
+                    dates.getDate()+dates.getHours()+dates.getMinutes()+dates.getSeconds() + "', '" +
+                    tglTrx + "', '" +
+                    noCustomer + "', '" +
+                    namaCustomer + "', '" +
+                    sttsSertifikat + "', '" +
+                    luasTanah + "', '" +
+                    njops + "', '" +
+                    tglTerbit + "', '" +
+                    sttsImb + "', '" +
+                    hargas + "', '" +
+                    pjkPenjual + "', '" +
+                    pjkPembeli + "', '" +
+                    ajbs + "', '" +
+                    balikNama + "', '" +
+                    ceks + "', '" +
+                    floatings + "', '" +
+                    zonas + "', '" +
+                    validasis + "', '" +
+                    pnbps + "', '" +
+                    totals + "', '', '');";
+            db.execSQL(sqlEstimasi);
+            Hitung.isSaved = true;
+        } catch (Exception exp) {
+            Hitung.isSaved = false;
+            exp.printStackTrace();
+        }
     }
 }
