@@ -22,20 +22,22 @@ public class Notaris extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listArray);
-        lvNotaris =(ListView) findViewById(R.id.lvNotaris);
+        lvNotaris = findViewById(R.id.lvNotaris);
         if (lvNotaris != null) {
             lvNotaris.setAdapter(adapter);
+            lvNotaris.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SoundBtn.soundBtn(Notaris.this);
+                    DetailNotaris.posisi = position;
+                    startActivity(new Intent(Notaris.this, DetailNotaris.class));
+                }
+            });
         }
-        lvNotaris.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(Notaris.this, DetailNotaris.class));
-                DetailNotaris.posisi = position;
-            }
-        });
     }
     @Override
     public void onBackPressed() {
+        SoundBtn.soundBtn(Notaris.this);
         finish();
     }
 

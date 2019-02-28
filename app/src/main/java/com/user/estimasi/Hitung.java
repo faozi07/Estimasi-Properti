@@ -35,7 +35,7 @@ public class Hitung extends AppCompatActivity {
     Calendar myCalendar;
     String tgl = "";
     EstimasiDB estimasiDB;
-    private boolean istgltrx = true, isLayHitung = false;
+    private boolean istgltrx = true, isLayHitung = true;
     public static boolean isSaved = false;
 
     @Override

@@ -20,4 +20,10 @@ public class TentangActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+    @Override
+    public void onBackPressed() {
+        SoundBtn.soundBtn(TentangActivity.this);
+        finish();
+    }
 }

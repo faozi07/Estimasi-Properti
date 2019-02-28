@@ -175,6 +175,7 @@ public class DetailNotaris extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         arrNotaris.clear();
+        SoundBtn.soundBtn(DetailNotaris.this);
         finish();
     }
 }

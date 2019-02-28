@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.user.estimasi.Hitung;
+import com.user.estimasi.Laporan;
 import com.user.estimasi.Login;
 import com.user.estimasi.Register;
+import com.user.estimasi.modLaporan;
 
 import java.util.Date;
 import java.util.Random;
@@ -216,5 +219,60 @@ public class EstimasiDB extends SQLiteOpenHelper {
             Hitung.isSaved = false;
             exp.printStackTrace();
         }
+    }
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    public void listHitung() {
+        SQLiteDatabase db = getWritableDatabase();
+        @SuppressLint("Recycle")
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME_ESTIMASI + ";", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Log.i("listHitungs : ",cursor.getString(0) + " - " + // ID Trx
+                        cursor.getString(1) + " - " + // Tgl Trx
+                        cursor.getString(2) + " - " + // no customer
+                        cursor.getString(3) + " - " + // nama customer
+                        cursor.getString(4) + " - " + // status sertifikat
+                        cursor.getString(5) + " - " + // luas tanah
+                        cursor.getString(6) + " - " + // njop
+                        cursor.getString(7) + " - " + // tgl terbit
+                        cursor.getString(8) + " - " + // imb
+                        cursor.getString(9) + " - " + // harga
+                        cursor.getString(10) + " - " + // pajak penjual
+                        cursor.getString(11) + " - " + // pajak pembeli
+                        cursor.getString(12) + " - " + // ajb
+                        cursor.getString(13) + " - " + // balik nama
+                        cursor.getString(14) + " - " + // cek
+                        cursor.getString(15) + " - " + // floating
+                        cursor.getString(16) + " - " + // zona
+                        cursor.getString(17) + " - " + // validasi
+                        cursor.getString(18) + " - " + // pnbp
+                        cursor.getString(19) + " - "); // total
+                modLaporan mh = new modLaporan();
+                mh.setIdTrx(cursor.getString(0));
+                mh.setTglTrx(cursor.getString(1));
+                mh.setNoCustomer(cursor.getString(2));
+                mh.setNamaCustomer(cursor.getString(3));
+                mh.setSttsSertifikat(cursor.getString(4));
+                mh.setLuasTanah(cursor.getString(5));
+                mh.setNjop(cursor.getString(6));
+                mh.setTglTerbit(cursor.getString(7));
+                mh.setSttsImb(cursor.getString(8));
+                mh.setHarga(cursor.getString(9));
+                mh.setPjkPenjual(cursor.getString(10));
+                mh.setPjkPembeli(cursor.getString(11));
+                mh.setAjb(cursor.getString(12));
+                mh.setBalikNama(cursor.getString(13));
+                mh.setCek(cursor.getString(14));
+                mh.setFloating(cursor.getString(15));
+                mh.setZona(cursor.getString(16));
+                mh.setValidasi(cursor.getString(17));
+                mh.setPnbp(cursor.getString(18));
+                mh.setTotal(cursor.getString(19));
+                mh.setTglSosialisasi(cursor.getString(20));
+                mh.setHslSosialisasi(cursor.getString(21));
+                Laporan.arrLaporan.add(mh);
+            } while (cursor.moveToNext());
+        }
+        db.close();
     }
 }
