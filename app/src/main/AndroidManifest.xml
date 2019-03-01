@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditSosialisasi"></activity>
         <activity
             android:name=".MenuUtama"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -38,7 +39,7 @@
         </activity>
         <activity android:name=".Hitung" />
         <activity android:name=".Laporan" />
-        <activity android:name=".SosialisasiActivity" />
+        <activity android:name=".Sosialisasi" />
         <activity android:name=".KonfirmasiActivity" />
         <activity android:name=".DetailLaporan" />
         <activity android:name=".SosioActivity" />

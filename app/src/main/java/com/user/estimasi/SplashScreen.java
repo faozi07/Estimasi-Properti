@@ -2,6 +2,7 @@ package com.user.estimasi;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,12 +13,16 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        MediaPlayer mpSound1 = MediaPlayer.create(this, R.raw.welcome);
+        mpSound1.start();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 cekDataUser();
             }
-        }, 2000);
+        }, 3500);
     }
 
     private void cekDataUser() {

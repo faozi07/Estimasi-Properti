@@ -8,18 +8,18 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
-public class LaporanAdapter extends RecyclerView.Adapter {
+public class SosialisasiAdapter extends RecyclerView.Adapter {
 
     public static ArrayList<modLaporan> items;
     Activity act;
@@ -28,7 +28,7 @@ public class LaporanAdapter extends RecyclerView.Adapter {
     private final int VIEW_ITEM = 1;
     private int lastPosition = -1;
 
-    LaporanAdapter(Activity acts, ArrayList<modLaporan> data) {
+    SosialisasiAdapter(Activity acts, ArrayList<modLaporan> data) {
         act = acts;
         items = data;
     }
@@ -42,6 +42,7 @@ public class LaporanAdapter extends RecyclerView.Adapter {
     public static class BrandViewHolder extends RecyclerView.ViewHolder {
 
         TextView tIdTrx, tTglTrx, tNamaCust, tSttsSert, tLuasTanah, tHarga;
+        Button btnUbah, btnLihat;
         CardView cardView;
 
         BrandViewHolder(View v) {
@@ -53,6 +54,8 @@ public class LaporanAdapter extends RecyclerView.Adapter {
             tSttsSert = v.findViewById(R.id.tStsSer);
             tLuasTanah = v.findViewById(R.id.tLuasTanah);
             tHarga = v.findViewById(R.id.tHarga);
+            btnUbah = v.findViewById(R.id.btnUbah);
+            btnLihat = v.findViewById(R.id.btnLihat);
             cardView = v.findViewById(R.id.card_view);
         }
     }
@@ -65,9 +68,9 @@ public class LaporanAdapter extends RecyclerView.Adapter {
         RecyclerView.ViewHolder vh = null;
         if (viewType == VIEW_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.item_laporan, parent, false);
+                    R.layout.item_sosialisasi, parent, false);
 
-            vh = new LaporanAdapter.BrandViewHolder(v);
+            vh = new SosialisasiAdapter.BrandViewHolder(v);
         }
 
         return vh;
@@ -75,7 +78,7 @@ public class LaporanAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        if (holder instanceof LaporanAdapter.BrandViewHolder) {
+        if (holder instanceof SosialisasiAdapter.BrandViewHolder) {
 
             mrt = items.get(position);
 
@@ -85,13 +88,23 @@ public class LaporanAdapter extends RecyclerView.Adapter {
             ((BrandViewHolder) holder).tSttsSert.setText(mrt.getSttsSertifikat());
             ((BrandViewHolder) holder).tLuasTanah.setText(mrt.getLuasTanah());
             ((BrandViewHolder) holder).tHarga.setText(mrt.getHarga());
-            ((BrandViewHolder) holder).cardView.setOnClickListener(new View.OnClickListener() {
+
+            ((BrandViewHolder) holder).btnLihat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     SoundBtn.soundBtn(act);
                     DetailLaporan.ml = items.get(position);
-                    DetailLaporan.isLaporan = true;
+                    DetailLaporan.isLaporan = false;
                     act.startActivity(new Intent(act, DetailLaporan.class));
+                }
+            });
+
+            ((BrandViewHolder) holder).btnUbah.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SoundBtn.soundBtn(act);
+                    EditSosialisasi.ml = items.get(position);
+                    act.startActivity(new Intent(act, EditSosialisasi.class));
                 }
             });
         }

@@ -2,13 +2,17 @@ package com.user.estimasi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class DetailLaporan extends AppCompatActivity {
 
     TextView iTglTrx, iNama, iStatusSert, iLuasTanah, iNjop, iTglTerbit, iStatusImb, iHarga, iPajakPenjual, iPajakPembeli, iAjb, iCek, iBalikNama, iFloating, iZona, iValidasi, iTotal,
             iPnbp, iNoCustomer, iTglSos, iHasilSos, iIdTrx;
+    LinearLayout layTglSos, layHslSos;
     public static modLaporan ml = new modLaporan();
+    public static boolean isLaporan = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +20,12 @@ public class DetailLaporan extends AppCompatActivity {
         setContentView(R.layout.activity_detail_laporan);
 
         if (getSupportActionBar()!= null){
-            getSupportActionBar().setTitle("Detail Laporan");
+            if (isLaporan) {
+                getSupportActionBar().setTitle("Detail Laporan");
+            }
+            else {
+                getSupportActionBar().setTitle("Detail Sosialisasi");
+            }
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -47,6 +56,9 @@ public class DetailLaporan extends AppCompatActivity {
         iTotal = findViewById(R.id.iTotal);
         iTglSos = findViewById(R.id.iTglSosial);
         iHasilSos = findViewById(R.id.iHasilSos);
+
+        layTglSos = findViewById(R.id.layTglSos);
+        layHslSos = findViewById(R.id.layHslSos);
     }
 
     private void action() {
@@ -71,18 +83,26 @@ public class DetailLaporan extends AppCompatActivity {
         iPnbp.setText(ml.getPnbp());
         iTotal.setText(ml.getTotal());
 
-        if (ml.getTglSosialisasi().equals("")) {
-            iTglSos.setText("-");
+        if (isLaporan) {
+            layTglSos.setVisibility(View.GONE);
+            layHslSos.setVisibility(View.GONE);
         }
         else {
-            iTglSos.setText(ml.getTglSosialisasi());
-        }
+            layTglSos.setVisibility(View.VISIBLE);
+            layHslSos.setVisibility(View.VISIBLE);
+            if (ml.getTglSosialisasi().equals("")) {
+                iTglSos.setText("-");
+            }
+            else {
+                iTglSos.setText(ml.getTglSosialisasi());
+            }
 
-        if (ml.getHslSosialisasi().equals("")) {
-            iHasilSos.setText("-");
-        }
-        else {
-            iHasilSos.setText(ml.getHslSosialisasi());
+            if (ml.getHslSosialisasi().equals("")) {
+                iHasilSos.setText("-");
+            }
+            else {
+                iHasilSos.setText(ml.getHslSosialisasi());
+            }
         }
     }
 

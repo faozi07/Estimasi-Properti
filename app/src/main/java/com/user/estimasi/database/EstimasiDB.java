@@ -7,10 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.user.estimasi.EditSosialisasi;
 import com.user.estimasi.Hitung;
 import com.user.estimasi.Laporan;
 import com.user.estimasi.Login;
 import com.user.estimasi.Register;
+import com.user.estimasi.Sosialisasi;
 import com.user.estimasi.modLaporan;
 
 import java.util.Date;
@@ -271,8 +273,21 @@ public class EstimasiDB extends SQLiteOpenHelper {
                 mh.setTglSosialisasi(cursor.getString(20));
                 mh.setHslSosialisasi(cursor.getString(21));
                 Laporan.arrLaporan.add(mh);
+                Sosialisasi.arrSosialisasi.add(mh);
             } while (cursor.moveToNext());
         }
         db.close();
+    }
+
+    public void editSosialisasi(String idTrx, String tglSos, String hslSos) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            String sqlEstimasi = "UPDATE " + TABLE_NAME_ESTIMASI + " SET "+tg_sosio+"='"+tglSos+"', "+hs_sosio+"='"+hslSos+"' WHERE "+id_trx+"='"+idTrx+"';";
+            db.execSQL(sqlEstimasi);
+            EditSosialisasi.isEditSuccess = true;
+        } catch (Exception exp) {
+            EditSosialisasi.isEditSuccess = false;
+            exp.printStackTrace();
+        }
     }
 }

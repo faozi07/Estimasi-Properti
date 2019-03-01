@@ -1,21 +1,25 @@
 package com.user.estimasi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.user.estimasi.database.EstimasiDB;
 
 import java.util.ArrayList;
 
-public class Laporan extends AppCompatActivity {
+public class Sosialisasi extends AppCompatActivity {
 
     RecyclerView rvLaporan;
     EstimasiDB estimasiDB;
-    LaporanAdapter laporanAdapter;
-    public static ArrayList<modLaporan> arrLaporan = new ArrayList<>();
+    SosialisasiAdapter sosialisasiAdapter;
+    public static ArrayList<modLaporan> arrSosialisasi = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +27,7 @@ public class Laporan extends AppCompatActivity {
         setContentView(R.layout.activity_laporan);
 
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Laporan");
+            getSupportActionBar().setTitle("Sosisalisasi");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -33,17 +37,17 @@ public class Laporan extends AppCompatActivity {
     private void init() {
         rvLaporan = findViewById(R.id.rvLaporan);
 
-        if (arrLaporan.size() > 0) {
-            arrLaporan.clear();
+        if (arrSosialisasi.size() > 0) {
+            arrSosialisasi.clear();
         }
-        estimasiDB = new EstimasiDB(Laporan.this);
+        estimasiDB = new EstimasiDB(Sosialisasi.this);
         estimasiDB.listHitung();
 
-        laporanAdapter = new LaporanAdapter(this, arrLaporan);
+        sosialisasiAdapter = new SosialisasiAdapter(this, arrSosialisasi);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rvLaporan.setLayoutManager(llm);
         rvLaporan.setHasFixedSize(true);
-        rvLaporan.setAdapter(laporanAdapter);
+        rvLaporan.setAdapter(sosialisasiAdapter);
     }
 
     @Override
@@ -54,8 +58,8 @@ public class Laporan extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        arrLaporan.clear();
-        SoundBtn.soundBtn(Laporan.this);
+        arrSosialisasi.clear();
+        SoundBtn.soundBtn(Sosialisasi.this);
         finish();
     }
 }

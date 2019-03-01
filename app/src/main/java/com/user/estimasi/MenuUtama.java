@@ -88,7 +88,7 @@ public class MenuUtama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SoundBtn.soundBtn(MenuUtama.this);
-                startActivity(new Intent(MenuUtama.this,SosialisasiActivity.class));
+                startActivity(new Intent(MenuUtama.this, Sosialisasi.class));
             }
         });
 

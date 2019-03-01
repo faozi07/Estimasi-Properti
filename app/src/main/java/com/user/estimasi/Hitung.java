@@ -53,6 +53,7 @@ public class Hitung extends AppCompatActivity {
     }
 
     private void init() {
+        myCalendar = Calendar.getInstance();
 //       ======================================== layout hitung ====================================
         tTglTrx = findViewById(R.id.ttglTrx);
         tNama = findViewById(R.id.tNamaCust);
@@ -63,7 +64,6 @@ public class Hitung extends AppCompatActivity {
         tStatusImb = findViewById(R.id.tStsImb);
         tHarga = findViewById(R.id.tHarga);
         btnHitung = findViewById(R.id.btnHitung);
-        myCalendar = Calendar.getInstance();
         layHitung = findViewById(R.id.layHitung);
         laySimpan = findViewById(R.id.laySimpan);
 //       ======================================== layout simpan ====================================
