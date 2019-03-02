@@ -123,8 +123,19 @@ public class Hitung extends AppCompatActivity {
         iStatusSert.setText(tStatusSert.getText().toString());
         iLuasTanah.setText(tLuasTanah.getText().toString()+" m2");
         iNjop.setText(tNjop.getText().toString());
-        iTglTerbit.setText(tTglTerbit.getText().toString());
-        iStatusImb.setText(tStatusImb.getText().toString());
+        if (tTglTerbit.getText().toString().equals("")) {
+            iTglTerbit.setText(" - ");
+        }
+        else {
+            iTglTerbit.setText(tTglTerbit.getText().toString());
+        }
+
+        if (tStatusImb.getText().toString().equals("")) {
+            iStatusImb.setText(" - ");
+        }
+        else {
+            iStatusImb.setText(tStatusImb.getText().toString());
+        }
         iHarga.setText("Rp. "+String.format("%,.2f", Double.parseDouble(tHarga.getText().toString())));
         iPajakPenjual.setText("Rp. "+String.format("%,.2f", pajakPenjual));
         iPajakPembeli.setText("Rp. "+String.format("%,.2f", pajakPembeli));
@@ -211,7 +222,7 @@ public class Hitung extends AppCompatActivity {
             public void onClick(View v) {
                 hideKeyboard();
                 if (tTglTrx.getText().toString().equals("") || tNama.getText().toString().equals("") || tStatusSert.getText().toString().equals("") || tLuasTanah.getText().toString().equals("") ||
-                    tNjop.getText().toString().equals("") || tTglTerbit.getText().toString().equals("") || tStatusImb.getText().toString().equals("") || tHarga.getText().toString().equals("")) {
+                    tNjop.getText().toString().equals("") || tHarga.getText().toString().equals("")) {
                     Toast.makeText(Hitung.this,"Inputan Anda tidak boleh kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {

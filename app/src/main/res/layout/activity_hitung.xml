@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:padding="10dp">
 
                 <android.support.design.widget.TextInputLayout
@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:focusable="false"
-                        android:hint="Tanggal Transaksi"
+                        android:hint="Tanggal Transaksi *"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -50,7 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:hint="Nama Customer"
+                        android:hint="Nama Customer *"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -64,7 +64,7 @@
                         android:id="@+id/tStsSer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Status Sertifikat"
+                        android:hint="Status Sertifikat *"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -79,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:hint="Luas Tanah (m2)"
+                        android:hint="Luas Tanah (m2) *"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -94,7 +94,7 @@
                         android:id="@+id/tnilaiNjop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Njop"
+                        android:hint="NJOP *"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:hint="Tanggal Terbit"
+                        android:hint="Tanggal Terbit IMB"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -137,10 +137,16 @@
                         android:id="@+id/tHarga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Harga"
+                        android:hint="Harga *"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:text="* Wajib Diisi"
+                    android:textColor="@color/colorAccent"/>
             </LinearLayout>
             <!--==================================== layout transaksi simpan ================================-->
             <LinearLayout
@@ -148,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:padding="10dp">
 
                 <LinearLayout
@@ -275,7 +281,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
-                        android:text="Tanggal Terbit"/>
+                        android:text="Tanggal Terbit IMB"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -315,7 +321,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="30dp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"

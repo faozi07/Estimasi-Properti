@@ -141,6 +141,7 @@ public class MenuUtama extends AppCompatActivity {
     public void onBackPressed() {
         SoundBtn.soundBtn(MenuUtama.this);
         if (!isExit) {
+            isExit = true;
             Toast.makeText(MenuUtama.this, "Tekan sekali lagi untuk keluar",Toast.LENGTH_LONG).show();
             new Handler().postDelayed(new Runnable() {
                 @Override

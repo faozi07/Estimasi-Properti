@@ -69,8 +69,19 @@ public class DetailLaporan extends AppCompatActivity {
         iStatusSert.setText(ml.getSttsSertifikat());
         iLuasTanah.setText(ml.getLuasTanah());
         iNjop.setText(ml.getNjop());
-        iTglTerbit.setText(ml.getTglTerbit());
-        iStatusImb.setText(ml.getSttsImb());
+        if (ml.getTglTrx().equals("")) {
+            iTglTerbit.setText(" - ");
+        }
+        else {
+            iTglTerbit.setText(ml.getTglTerbit());
+        }
+
+        if (ml.getSttsImb().equals("")) {
+            iStatusImb.setText(" - ");
+        }
+        else {
+            iStatusImb.setText(ml.getSttsImb());
+        }
         iHarga.setText(ml.getHarga());
         iPajakPenjual.setText(ml.getPjkPenjual());
         iPajakPembeli.setText(ml.getPjkPembeli());
