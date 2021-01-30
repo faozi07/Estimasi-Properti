@@ -100,7 +100,7 @@ public class Hitung extends AppCompatActivity {
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setItemText() {
-        double pajakPembeli = (Double.parseDouble(tHarga.getText().toString()) - 60000) * 5/100;
+        double pajakPembeli = (Double.parseDouble(tHarga.getText().toString()) - 60000000) * 5/100;
         double pajakPenjual = Double.parseDouble(tHarga.getText().toString()) * 25/1000;
         double ajb = Double.parseDouble(tHarga.getText().toString()) /100;
         double balikNama = 3000000;

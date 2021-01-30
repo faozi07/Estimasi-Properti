@@ -6,8 +6,11 @@ package com.user.estimasi;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.user.estimasi.database.EstimasiDB;
 
 import java.util.ArrayList;
 
@@ -42,7 +47,7 @@ public class SosialisasiAdapter extends RecyclerView.Adapter {
     public static class BrandViewHolder extends RecyclerView.ViewHolder {
 
         TextView tIdTrx, tTglTrx, tNamaCust, tSttsSert, tLuasTanah, tHarga;
-        Button btnUbah, btnLihat;
+        Button btnUbah, btnHapus;
         CardView cardView;
 
         BrandViewHolder(View v) {
@@ -55,7 +60,7 @@ public class SosialisasiAdapter extends RecyclerView.Adapter {
             tLuasTanah = v.findViewById(R.id.tLuasTanah);
             tHarga = v.findViewById(R.id.tHarga);
             btnUbah = v.findViewById(R.id.btnUbah);
-            btnLihat = v.findViewById(R.id.btnLihat);
+            btnHapus = v.findViewById(R.id.btnHapus);
             cardView = v.findViewById(R.id.card_view);
         }
     }
@@ -89,13 +94,21 @@ public class SosialisasiAdapter extends RecyclerView.Adapter {
             ((BrandViewHolder) holder).tLuasTanah.setText(mrt.getLuasTanah());
             ((BrandViewHolder) holder).tHarga.setText(mrt.getHarga());
 
-            ((BrandViewHolder) holder).btnLihat.setOnClickListener(new View.OnClickListener() {
+            ((BrandViewHolder) holder).cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     SoundBtn.soundBtn(act);
                     DetailLaporan.ml = items.get(position);
                     DetailLaporan.isLaporan = false;
                     act.startActivity(new Intent(act, DetailLaporan.class));
+                }
+            });
+
+            ((BrandViewHolder) holder).btnHapus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SoundBtn.soundBtn(act);
+                    showDialog(items.get(position).getIdTrx());
                 }
             });
 
@@ -113,6 +126,33 @@ public class SosialisasiAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void showDialog(final String idTrx){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(act);
+        alertDialogBuilder.setTitle("Apa benar anda ingin hapus data ini ?");
+        alertDialogBuilder
+                .setCancelable(true)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        SoundBtn.soundBtn(act);
+                        EstimasiDB estimasiDB = new EstimasiDB(act);
+                        estimasiDB.hapusSosialisasi(idTrx);
+                        if (EditSosialisasi.isDeleteSuccess) {
+                            Sosialisasi.setAdapter();
+                        }
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SoundBtn.soundBtn(act);
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 }

@@ -290,4 +290,16 @@ public class EstimasiDB extends SQLiteOpenHelper {
             exp.printStackTrace();
         }
     }
+
+    public void hapusSosialisasi(String idTrx) {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            String sqlEstimasi = "DELETE FROM "+TABLE_NAME_ESTIMASI+" WHERE "+id_trx+"='"+idTrx+"';";
+            db.execSQL(sqlEstimasi);
+            EditSosialisasi.isDeleteSuccess = true;
+        } catch (Exception exp) {
+            EditSosialisasi.isDeleteSuccess = false;
+            exp.printStackTrace();
+        }
+    }
 }

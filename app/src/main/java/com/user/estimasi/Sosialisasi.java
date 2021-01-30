@@ -1,5 +1,6 @@
 package com.user.estimasi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 
 public class Sosialisasi extends AppCompatActivity {
 
-    RecyclerView rvLaporan;
-    EstimasiDB estimasiDB;
-    SosialisasiAdapter sosialisasiAdapter;
+    public static RecyclerView rvLaporan;
+    public static EstimasiDB estimasiDB;
+    public static SosialisasiAdapter sosialisasiAdapter;
     public static ArrayList<modLaporan> arrSosialisasi = new ArrayList<>();
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +38,20 @@ public class Sosialisasi extends AppCompatActivity {
 
     private void init() {
         rvLaporan = findViewById(R.id.rvLaporan);
+        activity = Sosialisasi.this;
 
+        setAdapter();
+    }
+
+    public static void setAdapter() {
         if (arrSosialisasi.size() > 0) {
             arrSosialisasi.clear();
         }
-        estimasiDB = new EstimasiDB(Sosialisasi.this);
+        estimasiDB = new EstimasiDB(activity);
         estimasiDB.listHitung();
 
-        sosialisasiAdapter = new SosialisasiAdapter(this, arrSosialisasi);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        sosialisasiAdapter = new SosialisasiAdapter(activity, arrSosialisasi);
+        LinearLayoutManager llm = new LinearLayoutManager(activity);
         rvLaporan.setLayoutManager(llm);
         rvLaporan.setHasFixedSize(true);
         rvLaporan.setAdapter(sosialisasiAdapter);

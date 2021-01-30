@@ -31,6 +31,7 @@ public class EditSosialisasi extends AppCompatActivity {
 
     public static modLaporan ml = new modLaporan();
     public static boolean isEditSuccess = false;
+    public static boolean isDeleteSuccess = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
